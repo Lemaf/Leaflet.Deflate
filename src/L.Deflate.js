@@ -39,7 +39,16 @@ L.Deflate = function(options) {
         var feature = event.layer;
         if (!feature._layers && feature.getBounds && !feature.zoomThreshold && !feature.marker) {
             var zoomThreshold = getZoomThreshold(feature);
-            var marker = L.marker(feature.getBounds().getCenter());
+
+            if(options.icon && options.markerColor) {
+                var pointStyle = L.VectorMarkers.icon({
+                    markerColor: options.markerColor,
+                    iconColor: options.iconColor ? options.iconColor : '#000000',
+                    icon: options.icon
+                });
+            }
+
+            var marker = L.marker(feature.getBounds().getCenter(), {icon: pointStyle});
 
             if (feature._popupHandlersAdded) {
                 marker.bindPopup(feature._popup._content)
