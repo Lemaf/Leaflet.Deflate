@@ -63,7 +63,16 @@ L.Deflate = function(options) {
                     }
                 }
             }
-            marker.options = feature.options;
+
+            if(options.optionsToCopy) {
+
+                for(var index in options.optionsToCopy) {
+                    var option = options.optionsToCopy[index];
+                    marker.options[option] = feature.options[option];
+                }
+                
+            }
+
             feature.zoomThreshold = zoomThreshold;
             feature.marker = marker;
 
