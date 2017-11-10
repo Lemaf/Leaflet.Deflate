@@ -63,7 +63,7 @@ L.Deflate = function(options) {
                     }
                 }
             }
-
+            marker.options = feature.options;
             feature.zoomThreshold = zoomThreshold;
             feature.marker = marker;
 
